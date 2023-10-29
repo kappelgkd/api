@@ -3,6 +3,11 @@
 // // print_r($_FILES);
 // print_r($_SERVER);
 // exit;
+include("lib/conexao.php");
+include("lib/funcoes.php");
+// echo "<pre>";
+// print_r($_FILES);
+// exit;
 
 $method = $_SERVER["REQUEST_METHOD"];
 try {
@@ -12,9 +17,9 @@ try {
     }
 
     
-    if (count($_FILES["files"]["name"]) == 0) {
-        throw new Exception("Necessário enviar arquivos",303);
-    }
+    // if (count($_FILES["files"]["name"]) == 0) {
+    //     throw new Exception("Necessário enviar arquivos",303);
+    // }
 }
 
 catch (Exception $e) {
@@ -30,9 +35,10 @@ try{
         $arquivo = $_FILES["files"];
         $erro = 0;
         // Verifica se não ocorreu erro durante o envio
+        
         if ($erro === 0) {
             // Diretório de destino para salvar o arquivo
-            $diretorio_destino = "uploads/"; // Substitua pela pasta desejada
+            $diretorio_destino = "uploads/pdf/"; // Substitua pela pasta desejada
             
             if(!is_dir($diretorio_destino)){
                if(!mkdir($diretorio_destino,0777, true)){
@@ -40,7 +46,7 @@ try{
                 $response["mensagem"] ="pasta nao pode ser criada";
                }
             }
-            
+
             // Move o arquivo para o diretório de destino
             if (move_uploaded_file($arquivo["tmp_name"][0], $diretorio_destino . $arquivo["name"][0])) {
                 $response["status"] = 200;
@@ -68,7 +74,7 @@ catch (Exception $e) {
     
 }
 
-return json_encode($response);
+echo json_encode($response);
 
 
 ?>
