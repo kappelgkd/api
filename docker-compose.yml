@@ -1,0 +1,17 @@
+version: "3.3"
+services:
+  php:
+    container_name: api
+    #image: php:7.2-apache
+    #command: RUN docker-php-ext-install mysqli pdo pdo_mysql
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # depends_on:
+    #   - mysql
+    volumes:
+      - ./:/var/www/html
+      - ./uploads:/home/kappelgkd/uploads
+    ports:
+      - "8000:80"
+    
