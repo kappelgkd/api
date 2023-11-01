@@ -49,8 +49,13 @@ try{
 
             // Move o arquivo para o diretório de destino
             if (move_uploaded_file($arquivo["tmp_name"][0], $diretorio_destino . $arquivo["name"][0])) {
-                $response["status"] = 200;
-                $response["mensagem"] ="Arquivo enviado com sucesso";
+                
+                if(gravarArquivo($arquivo["name"][0],$diretorio_destino,$con)){
+                    $response["status"] = 200;
+                    $response["mensagem"] ="Arquivo enviado com sucesso";
+                }
+                // caso nao seja gravado, lançar erro e apagar arquivos do diretório
+                
             } else {
                 $response["status"] = 400;
                 $response["mensagem"] ="Erro ao mover o arquivo para o diretório de destino.";
@@ -75,6 +80,3 @@ catch (Exception $e) {
 }
 
 echo json_encode($response);
-
-
-?>
