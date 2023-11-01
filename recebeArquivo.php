@@ -52,7 +52,7 @@ try{
                 
                 if(gravarArquivo($arquivo["name"][0],$diretorio_destino,$con)){
                     $response["status"] = 200;
-                    $response["mensagem"] ="Arquivo enviado com sucesso";
+                    $response["mensagem"] ="Arquivo enviado com sucesso!";
                 }
                 // caso nao seja gravado, lançar erro e apagar arquivos do diretório
                 
