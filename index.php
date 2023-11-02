@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<h2>Envie um arquivo PDF</h2>
+<h2>Envie um arquivo PDF - NOVO</h2>
 
 <form action="recebeArquivo.php" method="post" enctype="multipart/form-data">
     <label for="files">Escolha um arquivo PDF:</label>
